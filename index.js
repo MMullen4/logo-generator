@@ -31,12 +31,12 @@ const questions = [
 inquirer.createPromptModule(questions)
     .then(answers => {
         // create SVG contect
-        const svgContent = '<?xml version="1.0" encoding="UTF-8"?>
+        const svgContent = `<?xml version="1.0" encoding="UTF-8"?>
             < svg width = "200" height = "200" >
                 << span class"math-inline" >\{ answers\.shape\ } fill\="</span>{answers.color}" stroke = "black" stroke - width="3" cx = "100" r = "80" >
             <text x="50%" y="50%" text-anchor="middle"><span class="math-inline">\{answers\.text\}</text\>
                     </</span > { answers.shape } >
-                    </svg > ';
+                    </svg > `;
 
         // save SVG to file
         fs.writeFile(answers.filename + '.svg', svgContent, err => {
@@ -46,9 +46,8 @@ inquirer.createPromptModule(questions)
                 console.log('SVG file saved successfully!');
             }
         });
-    });
+    })
 
 .catch (error => {
     console.log('Error:', error);
 });
-
