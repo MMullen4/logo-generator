@@ -1,7 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { spawn } = require('child_process');
-const { error } = require('console');
 
 // user questions
 const questions = [
