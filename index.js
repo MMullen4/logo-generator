@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const {Shape,Circle,Square,Triangle} = require("./lib/shape.js")
+const fs = require('fs'); // imports fs library
+const { Shape, Circle, Square, Triangle } = require("./lib/shape.js")
 
 // user questions
 const questions = [
@@ -42,10 +42,11 @@ inquirer.prompt(questions)
         } else {
             svg = new Triangle()
         }
-        svg.setcolor (answers.color)  // sets shape color
-        // create SVG contect
+        svg.setcolor(answers.color)  // sets shape color
+
+        // create SVG content
         const svgContent = `<?xml version="1.0" encoding="UTF-8"?>
-            < svg width = "200" height = "200" >
+            < svg width = "250" height = "250" >
                 << span class"math-inline" >\{ answers\.shape\ } fill\="</span>{answers.color}" stroke = "black" stroke - width="3" cx = "100" r = "80" >
             <text x="50%" y="50%" text-anchor="middle"><span class="math-inline">\{answers\.text\}</text\>
                     </</span > { answers.shape } >
@@ -54,16 +55,12 @@ inquirer.prompt(questions)
      width="300" height="200"
      xmlns="http://www.w3.org/2000/svg">
 
-
 ${svg.render()} 
-
-  <text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textcolor}">${answers.text}</text>
-
+  <text x="150" y="120" font-size="50" text-anchor="middle" fill="${answers.textcolor}">${answers.text}</text>
 </svg>
 `
-
-        // save SVG to file
-        fs.writeFile(answers.filename + '.svg', svgTemplate, err => {
+        // function to save SVG to file and use ternary operator response
+        fs.writeFile("./examples/" + answers.filename + '.svg', svgTemplate, err => {
             if (err) {
                 console.error('Error saving SVG file:', err);
             } else {
@@ -72,6 +69,6 @@ ${svg.render()}
         });
     })
 
-.catch (error => {
-    console.log('Error:', error);
-});
+    .catch(error => {
+        console.log('Error:', error);
+    });
