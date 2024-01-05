@@ -13,7 +13,7 @@ const questions = [
     {
         type: 'input',
         name: 'color',
-        message: 'Enter a color 9 (e.g. blue, red, #0000FF):'
+        message: 'Enter a color (e.g. blue, red, #0000FF):'
     },
     {
         type: 'input',
@@ -23,7 +23,7 @@ const questions = [
     {
         type: 'input',
         name: 'textcolor',
-        message: 'Enter a text color 9 (e.g. blue, red, #0000FF):'
+        message: 'Enter a text color (e.g. blue, red, #0000FF):'
     },
     {
         type: 'input',
@@ -59,9 +59,9 @@ ${svg.render()}
   <text x="150" y="120" font-size="50" text-anchor="middle" fill="${answers.textcolor}">${answers.text}</text>
 </svg>
 `
-        // function to save SVG to file and use ternary operator response
+        //Asynchronously writes data to the user's filename, replacing the file if it already exists.
         fs.writeFile("./examples/" + answers.filename + '.svg', svgTemplate, err => {
-            if (err) {
+            if (err || answers.filename == "" || answers.color == "" || answers.textcolor == "") {
                 console.error('Error saving SVG file:', err);
             } else {
                 console.log('SVG file saved successfully!');
